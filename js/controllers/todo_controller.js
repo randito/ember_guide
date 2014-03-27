@@ -4,6 +4,17 @@
     actions: {
       editTodo: function() {
         return this.set('isEditing', true);
+      },
+      acceptChanges: function() {
+        this.set('isEditing', false);
+        if (Ember.isEmpty(this.get('model.title'))) {
+          return this.send('removeTodo');
+        } else {
+          return this.get('model').save;
+        }
+      },
+      removeTodo: function() {
+        return this.get('model').deleteRecord().save();
       }
     },
     isEditing: false,

@@ -10,6 +10,19 @@ Todos.TodosController = Ember.ArrayController.extend
         isCompleted: false
       .save
 
+    clearCompleted: ->
+      completed = @filterBy('isCompleted', true)
+      completed.invoke('deleteRecord')
+      completed.invoke('save')
+
+  hasCompleted: (->
+    @get('completed') > 0
+  ).property('completed')
+
+  completed: (->
+    @filterBy('isCompleted', true).get('length')
+  ).property('@each.isCompleted')
+
   remaining: (->
     @filterBy('isCompleted', false).get('length')
   ).property('@each.isCompleted')

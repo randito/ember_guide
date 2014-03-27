@@ -10,3 +10,11 @@ Todos.TodosController = Ember.ArrayController.extend
         isCompleted: false
       .save
 
+  remaining: (->
+    @filterBy('isCompleted', false).get('length')
+  ).property('@each.isCompleted')
+
+  inflection: (->
+    if @get('remaining') == 1 then 'item' else 'items'
+  ).property('remaining')
+

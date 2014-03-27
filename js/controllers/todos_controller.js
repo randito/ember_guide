@@ -14,7 +14,17 @@
           isCompleted: false
         }).save;
       }
-    }
+    },
+    remaining: (function() {
+      return this.filterBy('isCompleted', false).get('length');
+    }).property('@each.isCompleted'),
+    inflection: (function() {
+      if (this.get('remaining') === 1) {
+        return 'item';
+      } else {
+        return 'items';
+      }
+    }).property('remaining')
   });
 
 }).call(this);

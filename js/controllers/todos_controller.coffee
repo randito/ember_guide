@@ -15,6 +15,10 @@ Todos.TodosController = Ember.ArrayController.extend
       completed.invoke('deleteRecord')
       completed.invoke('save')
 
+  allAreDone: ((key, value) ->
+    !!@get('length') && @everyProperty('isCompleted', true)
+  ).property('@each.isCompleted')
+
   hasCompleted: (->
     @get('completed') > 0
   ).property('completed')

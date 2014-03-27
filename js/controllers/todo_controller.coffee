@@ -8,7 +8,7 @@ Todos.TodoController = Ember.ObjectController.extend
       if Ember.isEmpty @get('model.title')
         @send 'removeTodo'
       else
-        @get('model').save
+        @get('model').save()
     removeTodo: ->
       @get('model')
       .deleteRecord()

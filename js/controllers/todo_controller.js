@@ -10,7 +10,7 @@
         if (Ember.isEmpty(this.get('model.title'))) {
           return this.send('removeTodo');
         } else {
-          return this.get('model').save;
+          return this.get('model').save();
         }
       },
       removeTodo: function() {

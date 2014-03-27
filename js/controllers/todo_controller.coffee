@@ -1,5 +1,11 @@
 
 Todos.TodoController = Ember.ObjectController.extend
+  actions:
+    editTodo: ->
+      @set 'isEditing', true
+
+  isEditing: false
+
   isCompleted: ((key, value) ->
     model = @get 'model'
     if value == undefined
@@ -9,4 +15,5 @@ Todos.TodoController = Ember.ObjectController.extend
       model.save()
       return value
   ).property 'model.isCompleted'
+
 

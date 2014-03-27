@@ -4,15 +4,29 @@
     return this.resource('todos', {
       path: '/'
     }, function() {
-      return this.route('index', {
+      this.route('index', {
         path: '/'
       });
+      return this.route('active');
     });
   });
 
   Todos.TodosRoute = Ember.Route.extend({
     model: function() {
       return this.store.find('todo');
+    }
+  });
+
+  Todos.TodosActiveRoute = Ember.Route.extend({
+    model: function() {
+      return this.store.filter('todo', function(todo) {
+        return !todo.get('isCompleted');
+      });
+    },
+    renderTemplate: function(controller) {
+      return this.render('todos/index', {
+        controller: controller
+      });
     }
   });
 

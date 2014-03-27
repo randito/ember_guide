@@ -3,7 +3,11 @@
   Todos.Router.map(function() {
     return this.resource('todos', {
       path: '/'
-    }, (function() {}));
+    }, function() {
+      return this.route('index', {
+        path: '/'
+      });
+    });
   });
 
   Todos.TodosRoute = Ember.Route.extend({

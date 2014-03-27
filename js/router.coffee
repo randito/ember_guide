@@ -1,7 +1,6 @@
 Todos.Router.map ->
-  @resource 'todos', path: '/', ( ->
-    # empty, so we can accept child routes.  WTF?  Weird
-    )
+  @resource 'todos', path: '/', ->
+    @route 'index', path: '/'
 
 Todos.TodosRoute = Ember.Route.extend
   model: ->

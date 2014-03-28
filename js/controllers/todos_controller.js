@@ -22,7 +22,16 @@
       }
     },
     allAreDone: (function(key, value) {
-      return !!this.get('length') && this.everyProperty('isCompleted', true);
+      if (value === void 0) {
+        return this.every(function(item, index, self) {
+          return item.get('isCompleted', value);
+        });
+      } else {
+        this.every(function(item, index, self) {
+          return item.set('isCompleted', value);
+        });
+        return value;
+      }
     }).property('@each.isCompleted'),
     hasCompleted: (function() {
       return this.get('completed') > 0;
